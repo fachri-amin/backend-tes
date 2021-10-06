@@ -17,7 +17,6 @@ module.exports = {
         }
       },
       ingredient_id: {
-        allowNull: false,
         type: Sequelize.INTEGER,
         references: {
           model: 'Ingredients',
