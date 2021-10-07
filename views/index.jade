@@ -3,3 +3,6 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
+  form#fileUpload(name="fileUpload", method="POST", action="/recipe/add", enctype="multipart/form-data")
+    input#userInputFile(type="file", name="coba")
+    button(type="submit") Upload

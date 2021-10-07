@@ -12,7 +12,6 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       this.belongsToMany(models.RecipeCategory, {through: 'RecipeCategoryRecipes', foreignKey: 'recipe_id'});
-      this.hasMany(models.StepIngredient);
       this.belongsTo(models.User, {foreignKey: 'author_id', as: 'author'});
     }
   };

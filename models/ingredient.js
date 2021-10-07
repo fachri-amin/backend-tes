@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       this.hasMany(models.StepIngredients);
-      this.belongsToMany(model.IngredientCategory, {through: 'IngredientCategoryIngredients', foreignKey: 'ingredient_id'});
+      this.belongsToMany(models.IngredientCategory, {through: 'IngredientCategoryIngredients', foreignKey: 'ingredient_id'});
     }
   };
   Ingredient.init({
