@@ -40,7 +40,7 @@ module.exports = {
                     step_number: payload.step_number[i],
                     description: payload.step_description[i],
                     timer: payload.step_timer[i],
-                    image: req.files[i].path,
+                    image: 'uploads/'+req.files[i].filename,
                 }, {transaction});
             }
 

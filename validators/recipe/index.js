@@ -1,6 +1,4 @@
-const { JSONCookies } = require('cookie-parser');
 const Joi = require('joi');
-const addStepsValidator = require('../steps');
 
 module.exports = {
     addRecipe: async (req, res, next) => {
@@ -66,11 +64,6 @@ module.exports = {
                 .messages({
                     'any.required':'Steps timer are required'
                 }),
-            step_image: Joi.array()
-                .required()
-                .messages({
-                    'any.required':'Steps image are required'
-                }),
             step_ingredients_step_id: Joi.array(),
             step_ingredients_ingredient_id: Joi.array(),
             step_ingredients_amount: Joi.array()
@@ -81,7 +74,12 @@ module.exports = {
 
         try {
             await addRecipeSchema.validateAsync(payload, {abortEarly: false});
-            next();
+            if(req.files){
+                next();
+            }
+            else {
+                res.json({message: 'Step Image is required'});
+            }
         }
         catch (err) {
             res.json(err)

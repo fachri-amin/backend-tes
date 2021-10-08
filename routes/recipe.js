@@ -11,6 +11,8 @@ const recipeValidator = require('../validators/recipe');
 const uploadFile = require('../utils/uploadFile');
 
 router.get('/all', recipeController.getAll);
-router.post('/add', uploadFile('step_image', true), recipeController.addRecipe);
+router.use('/add', uploadFile('step_image', true));
+router.use('/add', recipeValidator.addRecipe);
+router.post('/add', recipeController.addRecipe);
 
 module.exports = router;
