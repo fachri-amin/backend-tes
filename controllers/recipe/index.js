@@ -44,13 +44,15 @@ module.exports = {
                 }, {transaction});
             }
 
-            for(let i=0; i<payload.step_ingredients_step_id.length; i++){
-                const step_ingredients = await StepIngredients.create({
-                    step_id: payload.step_ingredients_step_id[i],
-                    recipe_id: recipe.id,
-                    amount: payload.step_ingredients_amount[i],
-                    unit: payload.step_ingredients_unit[i]
-                }, {transaction})
+            if(payload.step_ingredients_step_id){
+                for(let i=0; i<payload.step_ingredients_step_id.length; i++){
+                    const step_ingredients = await StepIngredients.create({
+                        step_id: payload.step_ingredients_step_id[i],
+                        recipe_id: recipe.id,
+                        amount: payload.step_ingredients_amount[i],
+                        unit: payload.step_ingredients_unit[i]
+                    }, {transaction})
+                }
             }
 
             await transaction.commit();

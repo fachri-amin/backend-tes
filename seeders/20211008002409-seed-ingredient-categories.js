@@ -6,18 +6,20 @@ module.exports = {
      * Add seed commands here.
      *
      * Example:
-     */
-    await queryInterface.bulkInsert('RecipeCategories', [
+     */ 
+    await queryInterface.bulkInsert('IngredientCategories', [
       {
-        name: 'Drink',
-        createdAt: new Date(),
-        updatedAt: new Date()
+        name: 'Vegetables',
+        description: 'fiber rich ingredient',
+        createdAt: new Date,
+        updatedAt: new Date
       },
       {
         parent_id: 1,
-        name: 'Hot Drink',
-        createdAt: new Date(),
-        updatedAt: new Date()
+        name: 'Green Vegetables',
+        description: 'fiber rich ingredient',
+        createdAt: new Date,
+        updatedAt: new Date
       }
     ], {});
   },

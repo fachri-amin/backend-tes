@@ -6,16 +6,26 @@ module.exports = {
         
         const addIngredientSchema = Joi.object({
             name: Joi.string()
-            .required()
-            .max(45)
+                .required()
+                .max(45)
                 .messages({
                     'any.required':'Ingredient name is required',
                     'string.max':'Ingredient name max length is 45'
                 }),
-                color: Joi.number()
+            color: Joi.number()
                 .required()
                 .messages({
                     'any.required':'Ingredient color is required',
+                }),
+            ingredient_categories: Joi.array()
+                .items(Joi.number()
+                    .required()
+                    .messages({
+                        'any.required':'Ingredient category is required',
+                    }))
+                .required()
+                .messages({
+                    'any.required':'Ingredient categories is required',
                 })
             });
             
