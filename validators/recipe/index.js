@@ -64,8 +64,10 @@ module.exports = {
                 .messages({
                     'any.required':'Steps timer are required'
                 }),
-            step_ingredients_step_id: Joi.array(),
-            step_ingredients_ingredient_id: Joi.array(),
+            step_ingredients_step_id: Joi.array()
+                .items(Joi.number()),
+            step_ingredients_ingredient_id: Joi.array()
+                .items(Joi.number()),
             step_ingredients_amount: Joi.array()
                 .items(Joi.number()),
             step_ingredients_unit: Joi.array()

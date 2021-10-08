@@ -3,13 +3,14 @@ const {
     sequelize,
     User,
     RecipeCategoryRecipe,
+    RecipeCategory,
     Step,
     StepIngredients,
 } = require('../../models');
 
 module.exports = {
     getAll: async (req, res) => {
-        const recipes = await Recipe.findAll();
+        const recipes = await Recipe.findAll({include: ['author', RecipeCategory]});
         res.json({data: recipes});
     },
     addRecipe: async (req, res) => {
@@ -48,6 +49,7 @@ module.exports = {
                 for(let i=0; i<payload.step_ingredients_step_id.length; i++){
                     const step_ingredients = await StepIngredients.create({
                         step_id: payload.step_ingredients_step_id[i],
+                        ingredient_id: payload.step_ingredients_ingredient_id[i],
                         recipe_id: recipe.id,
                         amount: payload.step_ingredients_amount[i],
                         unit: payload.step_ingredients_unit[i]
@@ -63,7 +65,7 @@ module.exports = {
         catch (err) {
             console.log(err);
             await transaction.rollback();
-            res.json({message: 'Failed to add new recipe!'})
+            res.json({message: 'Failed to add new recipe!'});
         }
     }
 }
